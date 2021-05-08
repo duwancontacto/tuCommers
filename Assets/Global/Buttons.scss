@@ -1,0 +1,20 @@
+.button-custom {
+  margin: 0.3rem;
+  border-radius: 5px;
+  font-size: 18px;
+  padding: 0.2rem 1rem;
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.button-blue {
+  background: #2f80ed;
+  border: 2px solid #2f80ed;
+  color: white;
+}
+.button-blue-outline {
+  border: 2px solid #2f80ed;
+  color: #2f80ed;
+  background: white;
+}

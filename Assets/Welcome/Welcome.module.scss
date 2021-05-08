@@ -1,0 +1,42 @@
+//NAV
+
+.nav_container {
+  height: 60px;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  border-bottom: 2px solid #e0e0e0;
+  background: white;
+}
+.container {
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.col_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  justify-content: flex-start;
+  div {
+    margin: 0px 30px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    color: #18191f;
+    font-family: "Manrope", sans-serif;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+//Main
+.main {
+  height: 100vh;
+  background: #f1f1f1;
+}

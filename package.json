@@ -3,13 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "nodemon Server/app.js",
+    "devExpress": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "next": "10.2.0",
+    "boostrap": "^2.0.0",
+    "bootstrap": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.0",
+    "express": "^4.17.1",
+    "next": "^10.2.0",
+    "node-sass": "^6.0.0",
+    "nodemon": "^2.0.7",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "reactstrap": "^8.9.0",
+    "sass": "^1.32.12"
   }
 }
