@@ -15,7 +15,7 @@ export default function Home() {
           </Col>
           <Col className={styles.menu}>
             <div>
-              <p>Nosotros</p>
+              <p>Nosotros </p>
             </div>
             <div>
               <p>Proceso</p>

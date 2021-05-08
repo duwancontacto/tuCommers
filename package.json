@@ -6,7 +6,7 @@
     "dev": "nodemon Server/app.js",
     "devExpress": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "node Server/app.js"
   },
   "dependencies": {
     "boostrap": "^2.0.0",
