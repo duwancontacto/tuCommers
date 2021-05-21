@@ -3,23 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon Server/app.js",
-    "devExpress": "next dev",
+    "dev": "nodemon Server/app.js --watch server",
+    "devFront": "next",
     "build": "next build",
     "start": "node Server/app.js"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@zeit/next-sass": "^1.0.1",
+    "babel-plugin-styled-components": "^1.12.0",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.0.0",
     "cors": "^2.8.5",
+    "create-react-nav": "^2.6.4",
     "dotenv": "^9.0.0",
     "express": "^4.17.1",
+    "file-loader": "^6.2.0",
+    "formik": "^2.2.7",
+    "navbar-react": "^1.0.4",
     "next": "^10.2.0",
-    "node-sass": "^6.0.0",
     "nodemon": "^2.0.7",
+    "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-loading": "^2.0.3",
     "reactstrap": "^8.9.0",
-    "sass": "^1.32.12"
+    "sass": "^1.32.12",
+    "styled-components": "^5.3.0",
+    "url-loader": "^4.1.1",
+    "yup": "^0.32.9"
   }
 }

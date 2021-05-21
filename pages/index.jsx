@@ -3,6 +3,8 @@ import {Row, Col} from "reactstrap";
 import styles from "../Assets/Welcome/Welcome.module.scss";
 import Image from "next/image";
 
+import Loading from "react-loading";
+
 import {useRouter} from "next/router";
 export default function Home() {
   const router = useRouter();
@@ -30,13 +32,20 @@ export default function Home() {
           <Col className={styles.col_container}>
             <button
               onClick={() => {
-                router.push("/Login");
+                router.push("/login");
               }}
               className="button-custom button-blue-outline"
             >
               Ingresar
             </button>
-            <button className="button-custom button-blue">Registrate</button>
+            <button
+              onClick={() => {
+                router.push("/register");
+              }}
+              className="button-custom button-blue"
+            >
+              Registrate
+            </button>
           </Col>
         </Row>
       </nav>

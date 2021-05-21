@@ -3,9 +3,10 @@
   border-radius: 5px;
   font-size: 18px;
   padding: 0.2rem 1rem;
-  &:active {
+}
+
+.button-custom:active{
     transform: scale(0.9);
-  }
 }
 
 .button-blue {
