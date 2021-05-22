@@ -25,8 +25,17 @@ export default function Login() {
   return (
     <LoginStyles>
       <div className="container-form">
-        <ThemeButton />
-        <h4>Iniciar Sesion</h4>
+        <div
+          className="title"
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          {" "}
+          TuCommers{" "}
+        </div>
+        {/*   <ThemeButton /> */}
+        <h4>Inicia Sesion</h4>
         <p>Inicia sesion para acceder a tu cuenta de administrador</p>
         <form onSubmit={formik.handleSubmit}>
           <input

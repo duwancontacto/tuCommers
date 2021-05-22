@@ -25,8 +25,17 @@ export default function Register() {
   return (
     <LoginStyles>
       <div className="container-form">
-        <ThemeButton />
-        <h4>Registrarte</h4>
+        <div
+          className="title"
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          {" "}
+          TuCommers{" "}
+        </div>
+        {/*  <ThemeButton /> */}
+        <h4>Registrate</h4>
         <p>Registrate para poder crear tu Tienda Online</p>
         <form onSubmit={formik.handleSubmit}>
           <input

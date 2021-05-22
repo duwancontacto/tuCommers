@@ -5,17 +5,17 @@
   padding: 0.2rem 1rem;
 }
 
-.button-custom:active{
-    transform: scale(0.9);
+.button-custom:active {
+  transform: scale(0.9);
 }
 
 .button-blue {
-  background: #2f80ed;
-  border: 2px solid #2f80ed;
+  background: #38A3F1;
+  border: 2px solid #38A3F1;
   color: white;
 }
 .button-blue-outline {
-  border: 2px solid #2f80ed;
-  color: #2f80ed;
-  background: white;
+  border: 2px solid transparent;
+  color: white;
+  background: transparent;
 }
