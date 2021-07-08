@@ -1,0 +1,38 @@
+.form-control {
+  background: var(--inputBackground) !important;
+  color: var(--colorText);
+  border-color: var(--inputBorder);
+  &:focus {
+    color: var(--colorText);
+    box-shadow: none;
+  }
+}
+.form-control-error {
+  background: var(--inputBackground) !important;
+  color: var(--inputError);
+  border-color: var(--inputError);
+  &::placeholder {
+    color: var(--inputError);
+  }
+  &:focus {
+    color: var(--colorText);
+    box-shadow: none;
+  }
+}
+
+.input-error-form .react-tel-input {
+  border: 1px solid var(--inputError);
+  border-radius: 5px;
+  input {
+    color: var(--inputError);
+  }
+}
+
+.labelInput {
+  width: "100%";
+  text-align: left;
+  color: var(--inputLabel);
+  .optional {
+    color: var(--inputLabel);
+  }
+}

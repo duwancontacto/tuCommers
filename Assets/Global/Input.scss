@@ -1,9 +1,0 @@
-.form-control {
-  background: var(--inputBackground) !important;
-  color: var(--colorText);
-  border-color: var(--inputBorder);
-  &:focus {
-    color: var(--colorText);
-    box-shadow: none;
-  }
-}

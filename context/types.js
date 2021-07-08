@@ -1,1 +1,3 @@
 export const CHANGE_THEME = "CHANGE_THEME";
+export const CHANGE_SIDEBAR = "CHANGE_SIDEBAR";
+export const CHANGE_USER = "CHANGE_USER";

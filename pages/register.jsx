@@ -1,29 +1,49 @@
-import React from "react";
-import {LoginStyles} from "../Assets/Login/LoginStyle";
+import React, { useEffect, useState } from "react";
 import * as yup from "yup";
-import {useFormik} from "formik";
-import {useRouter} from "next/router";
-import ThemeButton from "../Components/ThemeButton/ThemeButton";
+import { useFormik } from "formik";
+import { useRouter } from "next/router";
+import petition_post from "../utils/petitions/petition_post";
+import ReactLoading from "react-loading"
+import { useToasts } from 'react-toast-notifications';
+
+
 export default function Register() {
+
+  const { addToast } = useToasts();
   const router = useRouter();
+
+  const [loading, setLoading] = useState(false)
+
   const formik = useFormik({
     initialValues: {
       email: "Test@test.com",
-      password: "12345",
-      confir_password: "12345",
+      password: "123456",
+      confir_password: "123456",
     },
     validationSchema: yup.object({
-      email: yup.string().required("Es Requerido el Email"),
-      password: yup.string().required("Es Requerido la Contraseña"),
-      confir_password: yup.string().required("Es Requerido la Contraseña"),
+      email: yup.string().email("El Email no es Valido").required("Es Requerido el Email"),
+      password: yup.string().required("Es Requerido la Contraseña").min(6, "Minimo 6 Caracteres"),
+      confir_password: yup.string().required("Es Requerido la Contraseña").min(6, "Minimo 6 Caracteres"),
     }),
     onSubmit: (e) => {
-      console.log(e);
+      if (e.password === e.confir_password) {
+        setLoading(true)
+        return petition_post("Register", { data: { email: e.email, password: e.password } })
+          .then((result) => { setLoading(false); localStorage.setItem("userAuth", JSON.stringify(result.data.data)), addToast("Usuario registrado correctamente", { appearance: 'success', autoDismiss: true, }); router.push("/form") })
+          .catch((error) => { setLoading(false); addToast(error.response.data.data, { appearance: 'error', autoDismiss: true, }); })
+      }
+      addToast("Las Contrasenas no son iguales, por favor verifica", { appearance: 'error', autoDismiss: true, });
     },
   });
 
+
+  useEffect(() => {
+    if (formik.errors && formik.isSubmitting) Object.keys(formik.errors).map(element => addToast(formik.errors[element], { appearance: 'error', autoDismiss: true, }))
+  }, [formik.isSubmitting, formik.errors])
+
+
   return (
-    <LoginStyles>
+    <div className="register-container">
       <div className="container-form">
         <div
           className="title"
@@ -35,11 +55,11 @@ export default function Register() {
           TuCommers{" "}
         </div>
         {/*  <ThemeButton /> */}
-        <h4>Registrate</h4>
+        <h4 className="mt-5">Registrate</h4>
         <p>Registrate para poder crear tu Tienda Online</p>
         <form onSubmit={formik.handleSubmit}>
           <input
-            type="text"
+            type="email"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -47,7 +67,7 @@ export default function Register() {
             id="email"
             component="input"
             placeholder="Correo"
-            className="form-control"
+            className={`form-control ${formik.errors.email && formik.touched.email && "form-control-error"}`}
           />
           <input
             value={formik.values.password}
@@ -58,7 +78,7 @@ export default function Register() {
             component="input"
             type="password"
             placeholder="Contrasena"
-            className="form-control"
+            className={`form-control ${formik.errors.password && formik.touched.password && "form-control-error"}`}
           />
           <input
             value={formik.values.confir_password}
@@ -69,20 +89,21 @@ export default function Register() {
             component="input"
             type="password"
             placeholder="Confirmar Contrasena"
-            className="form-control"
+            className={`form-control ${formik.errors.confir_password && formik.touched.confir_password && "form-control-error"}`}
           />
           <p
             className="restart-password text-center m-0"
-            style={{fontSize: "12px"}}
+            style={{ fontSize: "12px" }}
           >
             Acepto los terminos y condiciones y las politicas de privacidad
           </p>
-          <button className="btn btn-primary">Registrate</button>
+          <button disabled={loading} className="btn btn-primary text-center"> {loading ? <div className="d-flex justify-content-center"><ReactLoading height={'6%'} width={'6%'} type="spin" /></div> : " Registrate"} </button>
           <p
             onClick={() => {
               router.push("/login");
             }}
             className="register"
+
           >
             ¿Ya tienes cuenta? Iniciar Sesion
           </p>
@@ -90,6 +111,6 @@ export default function Register() {
       </div>
 
       <img src="/Vectors.svg" className="vectors"></img>
-    </LoginStyles>
+    </div>
   );
 }

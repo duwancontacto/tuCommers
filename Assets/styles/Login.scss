@@ -1,0 +1,95 @@
+.login,
+.register-container {
+  position: relative;
+  width: 100vw;
+
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-family: "Lobster", cursive;
+  font-size: 2.5rem;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  cursor: pointer;
+}
+.vectors {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.container-form {
+  max-width: 500px;
+  width: 90%;
+  padding: 5rem 0;
+  h4 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 0.5rem;
+    color: var(--colorText);
+  }
+  form {
+    width: 70%;
+    margin: 0 auto;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+  p {
+    font-size: 15px;
+    text-align: center;
+    color: var(--colorTextOpacity-5);
+    margin-bottom: 2rem;
+  }
+  input {
+    margin: 1rem 0;
+  }
+  button {
+    margin-top: 2rem;
+    background: #20df7f;
+    border: none;
+    width: 100%;
+  }
+  .restart-password {
+    text-align: center;
+    padding-top: 0.5rem;
+    cursor: pointer;
+    color: var(--colorTextOpacity-7);
+    &:active {
+      color: #20df7f;
+    }
+  }
+  .register {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    width: 40%;
+    max-width: 230px;
+    cursor: pointer;
+    &:active {
+      color: #20df7f;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .login,
+  .register-container {
+    height: 100vh;
+  }
+  .container-form {
+    padding-top: 7rem;
+    .register {
+      right: 0px;
+      max-width: 200px;
+    }
+  }
+  .title {
+    font-size: 1.8rem;
+    position: fixed;
+  }
+}

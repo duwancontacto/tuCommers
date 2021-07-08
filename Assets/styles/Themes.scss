@@ -1,0 +1,84 @@
+body {
+  background: #fff;
+  --greenSuccess: #5cb85c;
+  --background: #fff;
+  --colorText: black;
+  --colorTextOpacity-5: rgba(0, 0, 0, 0.5);
+  --colorTextOpacity-7: rgba(0, 0, 0, 0.7);
+
+  //Inputs
+  --inputBackground: #fff;
+  --inputBorder: #ced4da;
+  --inputLabel: black;
+
+  //Inputs Error
+  --inputError: #bf2600;
+
+  //Sidebar
+  --sidebarBackground: #fff;
+  --sidebarBorder: #e5e5e5;
+  --sidebarText: rgba(0, 0, 0, 0.8);
+  --sidebarBackgroundItemActive: #e3f2fd;
+  --sidebarTextItemActive: #2196f3;
+  --sidebarSubtitle: #9e9e9e;
+
+  //Scroll
+  --colorScroll: #e0e0e0;
+
+  //Content
+  --contentBackground: #f1f1f1;
+  --BreadCrumdColorTitle: #000;
+  --BreadCrumdColorSubtitle: rgba(0, 0, 0, 0.4);
+
+  //Card
+  --cardBackground: #fff;
+  --cardText: #000;
+
+  //Profile
+  --profileBackground: #333333;
+  --cardTitle: rgba(0, 0, 0, 0.7);
+  --cardIcon: rgba(255, 255, 255, 0.7);
+}
+
+.dark {
+  background: #2b3648;
+  --background: #093545;
+
+  --colorText: #fff;
+  --colorTextOpacity-5: rgba(255, 255, 255, 0.5);
+  --colorTextOpacity-7: rgba(255, 255, 255, 0.7);
+
+  //Inputs
+  --inputBackground: #2b3648;
+  --inputBorder: #313c4e;
+  --inputLabel: rgba(255, 255, 255, 0.5);
+
+  //Inputs Error
+  --inputError: #bc3c1c;
+
+  //Sidebar
+  --sidebarBackground: #212936;
+  --sidebarBorder: #313c4e;
+  --sidebarText: #afbdd1;
+  --sidebarBackgroundItemActive: #2b3648;
+  --sidebarTextItemActive: #1976d2;
+  --sidebarSubtitle: #56657f;
+
+  //Scroll
+  --colorScroll: #e1e1e1;
+
+  //Content
+  --contentBackground: #2b3648;
+
+  --BreadCrumdColorTitle: #fff;
+  --BreadCrumdColorSubtitle: rgba(255, 255, 255, 0.4);
+
+  //Card
+  --cardBackground: #212936;
+  --cardText: #fff;
+
+  //Profile
+  --profileBackground: #f1f1f1;
+  --cardTitle: rgba(255, 255, 255, 0.7);
+  --cardIcon: rgba(0, 0, 0, 0.7);
+}

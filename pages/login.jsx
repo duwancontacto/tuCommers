@@ -1,29 +1,50 @@
-import React from "react";
-import {LoginStyles} from "../Assets/Login/LoginStyle";
+import React, { useEffect, useState } from "react";
+
 import * as yup from "yup";
-import {useFormik} from "formik";
-import {useRouter} from "next/router";
-import ThemeButton from "../Components/ThemeButton/ThemeButton";
+import { useFormik } from "formik";
+import { useRouter } from "next/router";
+import ReactLoading from "react-loading"
+import petition_post from "../utils/petitions/petition_post";
+import { useToasts } from 'react-toast-notifications';
+
 
 export default function Login() {
   const router = useRouter();
+  const { addToast } = useToasts();
+
+  const [loading, setLoading] = useState(false)
 
   const formik = useFormik({
     initialValues: {
       email: "Test@test.com",
-      password: "12345",
+      password: "123456",
     },
+
     validationSchema: yup.object({
-      email: yup.string().required("Es Requerido el Email"),
-      password: yup.string().required("Es Requerido la Contraseña"),
+      email: yup.string().email("El Email no es Valido").required("Es Requerido el Email"),
+      password: yup.string().required("Es Requerido la Contraseña").min(6, "Minimo 6 Caracteres"),
     }),
+
     onSubmit: (e) => {
-      console.log(e);
+      setLoading(true)
+      return petition_post("Login", { data: { email: e.email, password: e.password } })
+        .then((result) => {
+          setLoading(false);
+          addToast("Usuario Autenticado Correctamente", { appearance: 'success', autoDismiss: true, });
+          localStorage.setItem("userAuth", JSON.stringify(result.data.data))
+          router.push(result.data.data.registerComplete ? "/dashboard" : "/form")
+        })
+        .catch((error) => { setLoading(false); if (error.response) return addToast(error.response.data.data, { appearance: 'error', autoDismiss: true, }); })
     },
   });
 
+
+  useEffect(() => {
+    if (formik.errors && formik.isSubmitting) Object.keys(formik.errors).map(element => addToast(formik.errors[element], { appearance: 'error', autoDismiss: true, }))
+  }, [formik.isSubmitting, formik.errors])
+
   return (
-    <LoginStyles>
+    <div className="login">
       <div className="container-form">
         <div
           className="title"
@@ -35,11 +56,11 @@ export default function Login() {
           TuCommers{" "}
         </div>
         {/*   <ThemeButton /> */}
-        <h4>Inicia Sesion</h4>
+        <h4 className="mt-5">Inicia Sesion</h4>
         <p>Inicia sesion para acceder a tu cuenta de administrador</p>
         <form onSubmit={formik.handleSubmit}>
           <input
-            type="text"
+            type="email"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -47,7 +68,7 @@ export default function Login() {
             id="email"
             component="input"
             placeholder="USUARIO"
-            className="form-control"
+            className={`form-control ${formik.errors.email && formik.touched.email && "form-control-error"}`}
           />
           <input
             value={formik.values.password}
@@ -58,10 +79,12 @@ export default function Login() {
             component="input"
             type="password"
             placeholder="USUARIO"
-            className="form-control"
+            className={`form-control ${formik.errors.password && formik.touched.password && "form-control-error"}`}
           />
-          <button className="btn btn-primary">Iniciar Sesion</button>
-          <p className="restart-password">
+          <button disabled={loading} className="btn btn-primary"> {loading ? <div className="d-flex justify-content-center"><ReactLoading height={'6%'} width={'6%'} type="spin" /></div> : " Iniciar Sesion"} </button>
+          <p onClick={() => {
+            router.push("/forgotPassword");
+          }} className="restart-password">
             ¿Has olvidado la contraseña? Recuperala
           </p>
           <p
@@ -76,6 +99,6 @@ export default function Login() {
       </div>
 
       <img src="/Vectors.svg" className="vectors"></img>
-    </LoginStyles>
+    </div>
   );
 }

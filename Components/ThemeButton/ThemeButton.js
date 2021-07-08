@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import ThemeContext from "../../context/Theme/ThemeContext";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 import Brightness3Icon from "@material-ui/icons/Brightness3";
@@ -17,7 +17,7 @@ const ButtonStyled = styled.div`
 `;
 
 export default function ThemeButton() {
-  const {changeTheme, theme} = useContext(ThemeContext);
+  const { changeTheme, theme } = useContext(ThemeContext);
 
   const handleChangeTheme = async () => {
     const audioPrueba = new Audio("./switch2.mp3");
@@ -34,7 +34,7 @@ export default function ThemeButton() {
     <ButtonStyled onClick={handleChangeTheme}>
       {theme === "default" && <Brightness7Icon />}
       {theme === "dark" && (
-        <Brightness3Icon style={{transform: "rotate(130deg)"}} />
+        <Brightness3Icon style={{ transform: "rotate(130deg)" }} />
       )}
     </ButtonStyled>
   );

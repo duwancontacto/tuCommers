@@ -1,7 +1,7 @@
-import React, {useReducer} from "react";
+import React, { useReducer } from "react";
 import ThemeContext from "./ThemeContext";
 import ThemeReducer from "./ThemeReducer";
-import {CHANGE_THEME} from "../types";
+import { CHANGE_THEME } from "../types";
 
 export default function ThemeState(props) {
   //Estados globales actuales
@@ -13,7 +13,7 @@ export default function ThemeState(props) {
 
   const changeTheme = (value) => {
     document.body.className = value;
-    dispatch({type: CHANGE_THEME, payload: value});
+    dispatch({ type: CHANGE_THEME, payload: value });
   };
 
   //EXPORTAMOS TODO ESTO,ASI EN CUALQUIER ARCHIVO DEL PROYECTO PODREMOS OBTENER ESTA INFORMACION GLOBAL
