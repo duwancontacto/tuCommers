@@ -5,14 +5,15 @@ import { useRouter } from "next/router"
 
 import jwt from "jsonwebtoken"
 import petition_get from "../../utils/petitions/petition_get"
-import { useToasts } from 'react-toast-notifications';
+
 
 export default function PrivateRoutes({ children, jwtPassword }) {
 
     const router = useRouter()
-    const { addToast } = useToasts();
     const [activeComponent, setActiveComponent] = useState(false)
     const [loading, setLoading] = useState(true)
+
+    const [activeRender, setActiveRender] = useState(false)
 
     const { changeUser } = useContext(UserContext)
     const { changeTheme } = useContext(ThemeContext)
@@ -27,6 +28,22 @@ export default function PrivateRoutes({ children, jwtPassword }) {
     }
 
     useEffect(() => {
+
+        ///Get Data of user
+        if (activeRender) {
+            setLoading(false)
+            petition_get("getDataUser")
+                .then((result) => {
+                    changeTheme(result.data.data.theme === "dark" ? "dark" : "default");
+                    setLoading(true)
+                })
+                .catch((error) => { setLoading(true); })
+        } else {
+            changeTheme("default");
+        }
+
+
+        //Get Permissions of route private
         setActiveComponent(false)
         if (!jwtPassword) return
 
@@ -57,20 +74,10 @@ export default function PrivateRoutes({ children, jwtPassword }) {
         }
         setActiveComponent(true)
 
-    }, [router, jwtPassword])
+    }, [activeRender, jwtPassword])
 
     useEffect(() => {
-        if (getRoutePrivate()) {
-            setLoading(false)
-            petition_get("getDataUser")
-                .then((result) => {
-                    setLoading(true)
-                    changeTheme(result.data.data.theme === "dark" ? "dark" : "default");
-                })
-                .catch((error) => { setLoading(true); if (error.response) return addToast(error.response.data.data, { appearance: 'error', autoDismiss: true, }); })
-        } else {
-            changeTheme("default");
-        }
+        setActiveRender(getRoutePrivate)
     }, [router])
 
     return (

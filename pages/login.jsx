@@ -30,7 +30,6 @@ export default function Login() {
       return petition_post("Login", { data: { email: e.email, password: e.password } })
         .then((result) => {
           setLoading(false);
-          addToast("Usuario Autenticado Correctamente", { appearance: 'success', autoDismiss: true, });
           localStorage.setItem("userAuth", JSON.stringify(result.data.data))
           router.push(result.data.data.registerComplete ? "/dashboard" : "/form")
         })

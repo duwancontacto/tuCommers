@@ -29,7 +29,7 @@ export default function Register() {
       if (e.password === e.confir_password) {
         setLoading(true)
         return petition_post("Register", { data: { email: e.email, password: e.password } })
-          .then((result) => { setLoading(false); localStorage.setItem("userAuth", JSON.stringify(result.data.data)), addToast("Usuario registrado correctamente", { appearance: 'success', autoDismiss: true, }); router.push("/form") })
+          .then((result) => { setLoading(false); localStorage.setItem("userAuth", JSON.stringify(result.data.data)), router.push("/form") })
           .catch((error) => { setLoading(false); addToast(error.response.data.data, { appearance: 'error', autoDismiss: true, }); })
       }
       addToast("Las Contrasenas no son iguales, por favor verifica", { appearance: 'error', autoDismiss: true, });
