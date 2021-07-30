@@ -8,7 +8,7 @@ exports.getDataUser = async (req, res) => {
             return res.status(400).json({ error: true, data: "Error en la Autorizacion" });
         }
 
-        const findUser = await User.findOne({ _id: req.user.id })
+        const findUser = await User.findOne({ _id: req.user._id })
 
         if (!findUser) {
             return res.status(404).json({ error: true, data: "Usuario no Encontrado" });
@@ -41,7 +41,7 @@ exports.updateDataUser = async (req, res) => {
 
 
 
-        const userUpdate = await User.updateOne({ _id: req.user.id }, { personalData, bussinessData, theme: theme.type })
+        const userUpdate = await User.updateOne({ _id: req.user._id }, { personalData, bussinessData, theme: theme.type })
 
         if (!userUpdate) {
             return res.status(404).json({ error: true, data: "Usuario no Actualizado" });

@@ -25,6 +25,11 @@ const petition_patch = (key, value, token) => {
             url = `${configEntorno.urlBase}/api/getDataUser`;
             data = value.data
             break;
+        case "addUser":
+
+            url = `${configEntorno.urlBase}/api/groups`;
+            data = value.data
+            break;
 
         default:
             return "error";

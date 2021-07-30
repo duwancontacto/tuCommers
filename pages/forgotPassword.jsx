@@ -30,7 +30,7 @@ export default function ForgotPassword() {
             return petition_post("forgotPassword", { data: { email: e.email } })
                 .then((result) => {
                     setLoading(false);
-                    addToast("Solicitud Procesada Correctamente", { appearance: 'success', autoDismiss: true, });
+                    addToast("Solicitud Procesada, Revisa tu correo.", { appearance: 'success', autoDismiss: true, });
                 })
                 .catch((error) => {
                     setLoading(false);

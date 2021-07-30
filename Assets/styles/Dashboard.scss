@@ -193,6 +193,48 @@
 // SECTIONS
 
 /******************/
+/* PrincipalContent */
+/******************/
+.content-card-info {
+  .card-title {
+    font-size: 17px;
+    color: var(--cardTextTitle);
+    margin: 0;
+    padding-top: 1rem;
+    font-family: "Manrope", sans-serif;
+  }
+  p {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--cardText);
+    padding: 0;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 1.5rem;
+    font-family: "Roboto", sans-serif;
+  }
+
+  svg {
+    font-size: 60px;
+    color: var(--cardTextTitle);
+  }
+}
+
+.content-card-icon {
+  padding-left: 2.5rem !important;
+}
+.card-body-content {
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/******************/
+/* PrincipalContent */
+/******************/
+
+/******************/
 /* ProfileContent */
 /******************/
 .profile-container {
@@ -209,9 +251,9 @@
   }
 }
 .profile-container-icon {
-  width: 60px;
-  height: 60px;
-  background: var(--profileBackground);
+  width: 55px;
+  height: 55px;
+  background: var(--profileBackground) !important;
   color: var(--cardIcon);
   border-radius: 3px;
   display: grid;
@@ -220,4 +262,112 @@
 
 /******************/
 /* ProfileContent */
+/******************/
+
+/******************/
+/* TemplatesContent */
+/******************/
+.container-templates {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  .template {
+    width: 250px;
+    margin-bottom: 1rem;
+    min-height: 250px;
+    background-color: var(--templateBackground);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: 0.1s all;
+    &:hover {
+      transform: scale(1.05) translateY(20px);
+      transition: 0.1s all;
+    }
+    &:active {
+      transform: scale(0.95);
+      transition: 0.1s all;
+    }
+  }
+
+  .template-img {
+    height: 150px;
+    margin: 0 auto;
+    text-align: center;
+    box-sizing: border-box;
+
+    img {
+      border-radius: 5px 5px 0 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .template-content {
+    padding-top: 1rem;
+    text-align: center;
+    min-height: 100px;
+
+    h3 {
+      font-size: 18px;
+      margin: 0;
+      color: var(--templateColorTitle);
+    }
+    .description {
+      font-size: 16px;
+      color: var(--templateColorDescription);
+    }
+
+    .price {
+      padding: 1rem 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--templateColorTitle);
+      span {
+        padding-right: 2px;
+      }
+    }
+    .availableTemplate {
+      font-size: 18px;
+      background: var(--availableColor);
+      color: white;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 0 0 5px 5px;
+    }
+    .successTemplate {
+      font-size: 18px;
+      background: var(--successColor);
+      color: white;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 0 0 5px 5px;
+    }
+  }
+}
+
+.backTemplate {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  span {
+    padding-bottom: 2px;
+  }
+}
+
+.template-carousel {
+  .slide .img-carousel {
+    height: 400px;
+  }
+  .carousel .thumbs {
+    display: flex;
+    overflow-x: hidden;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+/******************/
+/* TemplatesContent */
 /******************/

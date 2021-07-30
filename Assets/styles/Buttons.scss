@@ -10,7 +10,7 @@
 }
 
 .button-blue {
-  background: #38a3f1;
+  background: #38a3f1 !important;
   border: 2px solid #38a3f1;
   color: white;
 }
@@ -24,4 +24,8 @@
   background: transparent;
   color: #38a3f1;
   border: 2px solid #38a3f1;
+}
+
+.react-toast-notifications__container {
+  z-index: 2000 !important;
 }

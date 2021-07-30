@@ -1,15 +1,17 @@
-const express = require("express");
-const next = require("next");
+import express from "express"
+import next from "next"
+import cors from "cors"
+import routes from "./Routes/index"
+import dbConnect from "./config/dbConnect"
+import fileUpload from "express-fileupload"
+
 const app = express();
-const cors = require("cors");
+
 
 const port = process.env.PORT || 3001;
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
-
-const routes = require("./Routes/index");
-const dbConnect = require("./config/dbConnect");
 
 nextApp
   .prepare()
@@ -21,6 +23,9 @@ nextApp
     //Connect to DB
     dbConnect();
 
+    app.use(fileUpload({
+      tempFileDir: '/temp'
+    }))
     //Routes
     routes(app);
 

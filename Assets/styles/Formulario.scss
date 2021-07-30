@@ -161,11 +161,16 @@
   text-align: right;
   padding: 1rem;
 }
-/* .submit-form {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-} */
+.submit-form-table {
+  height: 40px !important;
+  padding: 0 0.4rem !important;
+  font-size: 15px !important;
+}
+.submit-input-table {
+  height: 40px !important;
+  padding: 0 0.4rem 0 40px !important;
+  font-size: 15px !important;
+}
 
 .subtitle-form {
   text-align: left;

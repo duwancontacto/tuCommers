@@ -33,11 +33,26 @@ body {
   //Card
   --cardBackground: #fff;
   --cardText: #000;
+  --cardTextTitle: rgba(0, 0, 0, 0.7);
 
   //Profile
   --profileBackground: #333333;
   --cardTitle: rgba(0, 0, 0, 0.7);
   --cardIcon: rgba(255, 255, 255, 0.7);
+
+  //Table
+  --titleTableColor: black;
+  --columnTableColor: rgba(0, 0, 0, 0.7);
+  --borderBottomTableColor: 1px solid #e0e0e0;
+
+  //Template Design
+  --templateBackground: #fff;
+
+  --availableColor: #3f9fef;
+  --successColor: #6fb36f;
+
+  --templateColorTitle: black;
+  --templateColorDescription: rgba(0, 0, 0, 0.5);
 }
 
 .dark {
@@ -75,10 +90,26 @@ body {
 
   //Card
   --cardBackground: #212936;
-  --cardText: #fff;
+  --cardText: rgba(255, 255, 255, 0.9);
+  --cardTextTitle: rgba(255, 255, 255, 0.5);
 
   //Profile
   --profileBackground: #f1f1f1;
   --cardTitle: rgba(255, 255, 255, 0.7);
   --cardIcon: rgba(0, 0, 0, 0.7);
+
+  //Table
+  --titleTableColor: rgba(255, 255, 255, 0.9);
+  --columnTableColor: rgba(255, 255, 255, 0.6);
+  --borderBottomTableColor: 1px solid rgba(255, 255, 255, 0.1);
+
+  //Template Design
+
+  --templateBackground: #212936;
+
+  --availableColor: #3f9fef;
+  --successColor: #6fb36f;
+
+  --templateColorTitle: rgba(255, 255, 255, 0.9);
+  --templateColorDescription: rgba(255, 255, 255, 0.5);
 }

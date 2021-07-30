@@ -12,6 +12,15 @@ const petition_get = (key) => {
         case "getDataUser":
             url = `${configEntorno.urlBase}/api/getDataUser`;
             break;
+        case "resetToken":
+            url = `${configEntorno.urlBase}/api/auth/resetToken`;
+            break;
+        case "getListOfGrups":
+            url = `${configEntorno.urlBase}/api/groups`;
+            break;
+        case "getListTemplate":
+            url = `${configEntorno.urlBase}/api/templates`;
+            break;
         default:
             return "error";
     }

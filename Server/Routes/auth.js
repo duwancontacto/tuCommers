@@ -34,6 +34,11 @@ routes.post(
   ],
   AuthController.forgotPassword
 );
+routes.get(
+  "/resetToken",
+  auth,
+  AuthController.resetToken
+);
 
 routes.patch(
   "/restartPassword",

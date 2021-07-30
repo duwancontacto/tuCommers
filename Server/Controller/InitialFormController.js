@@ -19,7 +19,7 @@ exports.setInitialForm = async (req, res) => {
     }
 
 
-    const findUser = await User.findOne({ _id: req.user.id })
+    const findUser = await User.findOne({ _id: req.user._id })
 
     if (!findUser) {
       return res.status(404).json({ error: true, data: "Usuario no Encontrado" });
@@ -29,7 +29,7 @@ exports.setInitialForm = async (req, res) => {
       return res.status(500).json({ error: true, data: "Formulario ya creado" });
     }
 
-    const userUpdate = await User.updateOne({ _id: req.user.id }, { registerComplete: true, personalData, bussinessData })
+    const userUpdate = await User.updateOne({ _id: req.user._id }, { registerComplete: true, personalData, bussinessData })
 
     if (!userUpdate) throw "Error"
 

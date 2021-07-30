@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import SidebarItem from './SidebarItem'
 import ThemeButton from "../ThemeButton/ThemeButton"
 
@@ -10,7 +10,11 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DescriptionIcon from '@material-ui/icons/Description';
 import LocalGroceryStoreIcon from '@material-ui/icons/LocalGroceryStore';
 import StorefrontIcon from '@material-ui/icons/Storefront';
+import UserContext from '../../context/User/UserContext';
 export default function SidebarContent() {
+
+    const { user } = useContext(UserContext)
+
 
     const items = [
         {
@@ -24,6 +28,7 @@ export default function SidebarContent() {
         {
             title: "Settings", content: [
                 { name: "Perfil", route: "/dashboard/Profile", icon: <PersonIcon /> },
+                { name: "Grupo de Usuarios", route: "/dashboard/Groups", icon: <PersonIcon />, type: "restricted" },
             ]
         },
         {
@@ -50,14 +55,14 @@ export default function SidebarContent() {
                     <div className=" col-3 p-0 m-0   ">
                         <div className="sidebar-image"></div>
                     </div>
-                    <div className=" col-9 p-0 sidebar-name"> Duwan Fortunato </div>
+                    <div className=" col-9 p-0 sidebar-name"> {user && user.personalData[0].names} {user && user.personalData[0].lastNames} </div>
                 </div>
             </div>
 
             {items.map((element, index) =>
                 <div key={index} className="sidebar-container">
                     {element.title && <p className="sidebar-subtitle">{element.title}</p>}
-                    {element.content.map((elementTwo, i) => <SidebarItem key={i} element={elementTwo} />)}
+                    {element.content.map((elementTwo, i) => (elementTwo.type && user && user.role === "Admin" || !elementTwo.type) && <SidebarItem key={i} element={elementTwo} />)}
                 </div>)}
         </div>
     )

@@ -23,6 +23,7 @@ import ThemeContext from '../../../context/Theme/ThemeContext';
 export default function ProfileContent() {
 
     const [loading, setLoading] = useState(false)
+    const [data, setData] = useState(null)
     const { changeTheme } = useContext(ThemeContext)
 
     const { addToast } = useToasts();
@@ -90,6 +91,8 @@ export default function ProfileContent() {
         petition_get("getDataUser")
             .then((result) => {
                 setLoading(false)
+                setData(result.data.data)
+
                 formik.setValues({
                     personalData: result.data.data.personalData ? result.data.data.personalData[0] : {},
                     bussinessData: result.data.data.bussinessData ? result.data.data.bussinessData[0] : {},
@@ -104,12 +107,27 @@ export default function ProfileContent() {
             <Breadcrumb title="Tablero" subtitle="Perfil" />
 
             {loading ? <LoadingPage /> : <section className="row">
-                <div className="col-12 ">
+                <div className="col-12 pt-5">
                     <div className="d-flex justify-content-end">
                         <button onClick={() => { formik.handleSubmit() }} className="button-custom button-blue submit-form">
                             Save
                         </button>
                     </div>
+                    <Card body >
+                        <div className="profile-container">
+                            <div className="profile-container-icon">
+                                <SettingsBrightnessIcon />
+                            </div>
+                            <h3 className="card-title">General</h3>
+                        </div>
+                        <div className={`row px-3 px-md-5 pt-5 my-4 `}>
+                            {initialForm.theme.map((element, i) => <Input formik={formik} key={i} {...element} onBlur={formik.handleBlur} onChangeInput={formik.handleChange} />)}
+                        </div>
+
+                    </Card>
+                </div >
+                <div className="col-12 pt-5">
+
                     <Card body >
                         <div className="profile-container">
                             <div className="profile-container-icon">
@@ -123,7 +141,7 @@ export default function ProfileContent() {
 
                     </Card>
                 </div >
-                <div className="col-12 pt-5">
+                {data && data.role === "Admin" && <div className="col-12 pt-5">
                     <Card body >
                         <div className="profile-container">
                             <div className="profile-container-icon">
@@ -136,21 +154,9 @@ export default function ProfileContent() {
                         </div>
 
                     </Card>
-                </div >
-                <div className="col-12 pt-5">
-                    <Card body >
-                        <div className="profile-container">
-                            <div className="profile-container-icon">
-                                <SettingsBrightnessIcon />
-                            </div>
-                            <h3 className="card-title">Tema de la pagina</h3>
-                        </div>
-                        <div className={`row px-3 px-md-5 pt-5 my-4 `}>
-                            {initialForm.theme.map((element, i) => <Input formik={formik} key={i} {...element} onBlur={formik.handleBlur} onChangeInput={formik.handleChange} />)}
-                        </div>
+                </div >}
 
-                    </Card>
-                </div >
+
             </section>}
             <Footer />
         </div>

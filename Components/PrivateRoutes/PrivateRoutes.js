@@ -19,7 +19,7 @@ export default function PrivateRoutes({ children, jwtPassword }) {
     const { changeTheme } = useContext(ThemeContext)
 
 
-
+    // Get if the route is private or public
     const getRoutePrivate = () => {
         if (window.location.pathname !== "/login" && window.location.pathname !== "/forgotPassword" && window.location.pathname !== "/restartPassword" && window.location.pathname !== "/register" && window.location.pathname !== "/") {
             return true
@@ -28,7 +28,6 @@ export default function PrivateRoutes({ children, jwtPassword }) {
     }
 
     useEffect(() => {
-
         ///Get Data of user
         if (activeRender) {
             setLoading(false)
@@ -44,19 +43,20 @@ export default function PrivateRoutes({ children, jwtPassword }) {
 
 
         //Get Permissions of route private
-        setActiveComponent(false)
+        setActiveComponent(true)
         if (!jwtPassword) return
-
         const userAuth = JSON.parse(localStorage.getItem("userAuth"))
 
         if (!userAuth && !getRoutePrivate()) return setActiveComponent(true)
         else if (!userAuth && getRoutePrivate) return router.push("/")
-
         try {
             let jwtValid = jwt.verify(userAuth.token, jwtPassword)
             let dateTime = Math.floor((Date.now()) / 1000)
+
+
             if (getRoutePrivate()) {
                 if (jwtValid.exp < dateTime) {
+
                     localStorage.removeItem("userAuth")
                     return router.push("/")
                 }
@@ -64,21 +64,40 @@ export default function PrivateRoutes({ children, jwtPassword }) {
             } else if (jwtValid.exp > dateTime) {
                 if (jwtValid.registerComplete) return router.push("/dashboard")
                 router.push("/form")
-
             }
+
         } catch (error) {
             if (error.message === "jwt expired") {
                 localStorage.removeItem("userAuth")
                 return router.push("/")
             }
         }
-        setActiveComponent(true)
+
 
     }, [activeRender, jwtPassword])
 
     useEffect(() => {
         setActiveRender(getRoutePrivate)
     }, [router])
+
+
+    //Reset Token 
+    useEffect(() => {
+        let intervalId
+        if (getRoutePrivate) {
+            intervalId = setInterval(() => {
+                petition_get("resetToken")
+                    .then((result) => {
+                        localStorage.setItem("userAuth", JSON.stringify(result.data.data))
+                    })
+                    .catch((error) => { clearInterval(intervalId); router.push("/") })
+            }, 5000000)
+        }
+
+        return () => {
+            clearInterval(intervalId);
+        }
+    }, [])
 
     return (
         <>

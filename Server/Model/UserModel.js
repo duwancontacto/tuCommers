@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
 const UserSchema = mongoose.Schema({
   email: {
@@ -29,10 +29,24 @@ const UserSchema = mongoose.Schema({
     type: Array,
     default: {}
   },
+  role: {
+    type: String,
+    default: null
+  },
+  groupId: {
+    type: String,
+    default: null
+  },
+
   register: {
     type: Date,
     default: Date.now(),
   },
+  lastRegister: {
+    type: Date,
+    default: Date.now(),
+  },
+
 
 });
 

@@ -2,7 +2,7 @@ import React from 'react'
 import PhoneInput from 'react-phone-input-2'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
-export default function Input({ formik, type, name, optional, onBlur, placeholder, label, onChangeInput, dropdownOptions }) {
+export default function Input({ size, formik, type, name, optional, onBlur, placeholder, label, onChangeInput, dropdownOptions }) {
     const getKeyNames = name.split(".")
     let value = ""
     if (formik.values[getKeyNames[0]]) {
@@ -11,7 +11,7 @@ export default function Input({ formik, type, name, optional, onBlur, placeholde
 
 
     return (
-        <div className={`col-12 col-md-6 text-left mb-3  ${formik.errors[getKeyNames[0]] && formik.errors[getKeyNames[0]][getKeyNames[1]] && formik.touched[getKeyNames[0]] && formik.touched[getKeyNames[0]][getKeyNames[1]] && "input-error-form"}`}>
+        <div className={`col-12 col-md-${size || 6} text-left mb-3  ${formik.errors[getKeyNames[0]] && formik.errors[getKeyNames[0]][getKeyNames[1]] && formik.touched[getKeyNames[0]] && formik.touched[getKeyNames[0]][getKeyNames[1]] && "input-error-form"}`}>
             <label className="labelInput" htmlFor={name} style={{ width: "100%", textAlign: "left" }}>
                 {label} {optional && <span className="optional">(Opcional)</span>} :
             </label>
